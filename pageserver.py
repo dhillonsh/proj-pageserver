@@ -74,6 +74,8 @@ def respond(sock):
     This server responds only to GET requests (not PUT, POST, or UPDATE).
     Any valid GET request is answered with an ascii graphic of a cat. 
     """
+    
+    sent = 0
     request = sock.recv(1024)  # We accept only short requests
     request = str(request, encoding='utf-8', errors='strict')
     print("\nRequest was {}\n".format(request))
@@ -84,10 +86,12 @@ def respond(sock):
         if len(page) > 2 or not os.path.isfile('./' + page[1]):
           transmit(STATUS_NOT_FOUND, sock)
         else:
+          print('Here')
           transmit(STATUS_OK, sock)
           #f = open('./pages/' + page[1])
           with open('./pages/' + page[1]) as fp:
-            transmit(fp, sock)
+            for line in fp:
+              transmit(line, sock)
         
         
     else:
