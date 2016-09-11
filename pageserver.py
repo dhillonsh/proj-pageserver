@@ -56,10 +56,6 @@ def serve(sock, func):
 ## Starter version only serves cat pictures. In fact, only a
 ## particular cat picture.  This one.
 ##
-CAT = """
-     ^ ^
-   =(   )=
-"""
 
 ## HTTP response codes, as the strings we will actually send. 
 ##   See:  https://en.wikipedia.org/wiki/List_of_HTTP_status_codes
@@ -82,8 +78,10 @@ def respond(sock):
 
     parts = request.split()
     if len(parts) > 1 and parts[0] == "GET":
+        print(parts)
         transmit(STATUS_OK, sock)
-        transmit(CAT, sock)
+        
+        
     else:
         transmit(STATUS_NOT_IMPLEMENTED, sock)        
         transmit("\nI don't handle this request: {}\n".format(request), sock)
