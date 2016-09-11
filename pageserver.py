@@ -18,6 +18,8 @@ import argparse  # Command line options (may override some configuration options
 import socket    # Basic TCP/IP communication on the internet
 import _thread   # Response computation runs concurrently with main program 
 
+import os
+
 def listen(portnum):
     """
     Create and listen to a server socket.
@@ -78,9 +80,12 @@ def respond(sock):
 
     parts = request.split()
     if len(parts) > 1 and parts[0] == "GET":
-        print(parts)
-        print(parts[parts.index('Referer:') + 1])
-        transmit(STATUS_OK, sock)
+        page = parts[1].split('/')
+        if len(page) > 2 || page[1] not in os.listdir():
+          transmit(STATUS_NOT_FOUND, sock)
+        else:
+          transmit(STATUS_OK, sock)
+          transmit('./pages/' + page[1], sock)
         
         
     else:
