@@ -13,12 +13,13 @@
   program is run).  
 """
 
+import os.path
+
 import CONFIG    # Configuration options. Create by editing CONFIG.base.py
 import argparse  # Command line options (may override some configuration options)
 import socket    # Basic TCP/IP communication on the internet
 import _thread   # Response computation runs concurrently with main program 
 
-import os
 
 def listen(portnum):
     """
@@ -73,7 +74,6 @@ def respond(sock):
     This server responds only to GET requests (not PUT, POST, or UPDATE).
     Any valid GET request is answered with an ascii graphic of a cat. 
     """
-    sent = 0
     request = sock.recv(1024)  # We accept only short requests
     request = str(request, encoding='utf-8', errors='strict')
     print("\nRequest was {}\n".format(request))
@@ -81,11 +81,13 @@ def respond(sock):
     parts = request.split()
     if len(parts) > 1 and parts[0] == "GET":
         page = parts[1].split('/')
-        if len(page) > 2 or page[1] not in os.listdir():
+        if len(page) > 2 or not os.path.isfile('./' + page[1]):
           transmit(STATUS_NOT_FOUND, sock)
         else:
           transmit(STATUS_OK, sock)
-          transmit('./pages/' + page[1], sock)
+          #f = open('./pages/' + page[1])
+          with open('./pages/' + page[1]) as fp:
+            transmit(fp, sock)
         
         
     else:
