@@ -81,7 +81,7 @@ def respond(sock):
     parts = request.split()
     if len(parts) > 1 and parts[0] == "GET":
         page = parts[1].split('/')
-        if len(page) > 2 || page[1] not in os.listdir():
+        if len(page) > 2 or page[1] not in os.listdir():
           transmit(STATUS_NOT_FOUND, sock)
         else:
           transmit(STATUS_OK, sock)
