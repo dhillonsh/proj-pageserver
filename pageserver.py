@@ -78,7 +78,7 @@ def respond(sock):
 
     parts = request.split()
     if len(parts) > 1 and parts[0] == "GET":
-        print(parts)
+        print(parts[parts.index('Referer:') + 1])
         transmit(STATUS_OK, sock)
         
         
