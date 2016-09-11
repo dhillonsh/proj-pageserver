@@ -81,8 +81,10 @@ def respond(sock):
     print("\nRequest was {}\n".format(request))
 
     parts = request.split()
+    print(parts)
     if len(parts) > 1 and parts[0] == "GET":
         page = parts[1].split('/')
+        print(page)
         if len(page) > 2 or not os.path.isfile('./' + page[1]):
           transmit(STATUS_NOT_FOUND, sock)
         else:
