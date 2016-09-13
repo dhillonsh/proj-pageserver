@@ -90,7 +90,7 @@ def respond(sock):
         transmit("vary: Accept-Encoding\n", sock)
 
         if page.endswith(".html"):
-          transmit("Content-type: text/html\n\n", sock)
+          transmit("Content-type: text/html; charset=UTF-8\n\n", sock)
         else:
           transmit("content-type:text/css; charset=UTF-8\n\n", sock)
           
@@ -117,7 +117,6 @@ def respond(sock):
         transmit("\nI don't handle this request: {}\n".format(request), sock)
 
     sock.close()
-    return
 
 def transmit(msg, sock):
     """It might take several sends to get the whole message out"""
