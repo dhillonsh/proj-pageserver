@@ -95,7 +95,7 @@ def respond(sock):
         else:
           transmit("content-type:text/css; charset=UTF-8\n\n", sock)
           
-        with open('./pages/' + page, 'rb') as fp:
+        with open('./pages/' + page, 'r') as fp:
           #read = fp.read()
           transmit(fp.read(), sock)
         '''
