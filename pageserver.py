@@ -88,6 +88,9 @@ def respond(sock):
           transmit(STATUS_NOT_FOUND, sock)
         else:
           transmit(STATUS_OK, sock)
+          if page.endsiwth(".css"):
+            transmit("Content-Type: text/css", sock)
+          
           #f = open('./pages/' + page[1])
           with open('./pages/' + page, 'r') as fp:
             read = fp.read()
