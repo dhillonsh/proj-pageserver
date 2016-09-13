@@ -88,7 +88,7 @@ def respond(sock):
           transmit(STATUS_NOT_FOUND, sock)
         else:
           transmit(STATUS_OK, sock)
-          if page.endsiwth(".css"):
+          if page.endswith(".css"):
             transmit("Content-Type: text/css", sock)
           
           #f = open('./pages/' + page[1])
