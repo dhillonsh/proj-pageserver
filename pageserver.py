@@ -86,6 +86,9 @@ def respond(sock):
         transmit(STATUS_OK, sock)
         size = os.path.getsize('./pages/' + page)
         transmit('content-length: ' + str(size) + "\n", sock)
+        transmit(:status: 200\n", sock)
+        transmit("vary: Accept-Encoding\n", sock)
+
         if page.endswith(".html"):
           transmit("Content-type: text/html\n\n", sock)
         else:
