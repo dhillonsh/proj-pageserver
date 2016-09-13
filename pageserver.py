@@ -86,7 +86,7 @@ def respond(sock):
         page = parts[1]
         transmit(STATUS_OK, sock)
         if page.endswith(".html"):
-          #transmit("Content-Type: text/html\r\n\r\n", sock)
+          transmit("Content-type: text/html\n\n", sock)
           print("HTML")
         else:
           transmit("Content-type: text/css\n\n", sock)
