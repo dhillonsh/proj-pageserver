@@ -84,6 +84,12 @@ def respond(sock):
     print(parts)
     if len(parts) > 1 and parts[0] == "GET":
         page = parts[1]
+        transmit(STATUS_OK, sock)
+        with open('./pages/' + page, 'r') as fp:
+          read = fp.read()
+          print(read)
+          transmit(read, sock)
+        '''
         if  not os.path.isfile('./pages' + page):
           transmit(STATUS_NOT_FOUND, sock)
         else:
@@ -96,7 +102,7 @@ def respond(sock):
             read = fp.read()
             print(read)
             transmit(read, sock)
-        
+        '''
         
     else:
         transmit(STATUS_NOT_IMPLEMENTED, sock)        
