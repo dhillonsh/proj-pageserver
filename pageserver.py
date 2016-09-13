@@ -64,7 +64,7 @@ def serve(sock, func):
 ##   See:  https://en.wikipedia.org/wiki/List_of_HTTP_status_codes
 ##   or    http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html
 ## 
-STATUS_OK = "HTTP/1.0 200 OK"
+STATUS_OK = "HTTP/1.0 200 OK\n"
 STATUS_FORBIDDEN = "HTTP/1.0 403 Forbidden\n\n"
 STATUS_NOT_FOUND = "HTTP/1.0 404 Not Found\n\n"
 STATUS_NOT_IMPLEMENTED = "HTTP/1.0 401 Not Implemented\n\n"
@@ -88,7 +88,8 @@ def respond(sock):
         if page.endswith(".html"):
           transmit("Content-Type: text/html\r\n\r\n", sock)
         else:
-          transmit("Content-Type: text/ssn\r\n", sock)
+          transmit("Content-Type: text/css\r\n\r\n", sock)
+          
         with open('./pages/' + page, 'r') as fp:
           read = fp.read()
           print(read)
