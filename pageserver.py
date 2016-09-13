@@ -83,20 +83,21 @@ def respond(sock):
     parts = request.split()
     if len(parts) > 1 and parts[0] == "GET":
         page = parts[1]
-        transmit(STATUS_OK, sock)
+        
         size = os.path.getsize('./pages/' + page)
-        transmit('content-length: ' + str(size) + "\n", sock)
-        transmit("status: 200\n", sock)
-        transmit("vary: Accept-Encoding\n", sock)
+        transmit(STATUS_OK \
+        + 'content-length: ' + str(size) + "\n" \
+        + "status: 200\n" \
+        + "vary: Accept-Encoding\n", sock)
 
         if page.endswith(".html"):
           transmit("Content-type: text/html; charset=UTF-8\n\n", sock)
         else:
           transmit("content-type:text/css; charset=UTF-8\n\n", sock)
           
-        with open('./pages/' + page, 'r') as fp:
-          read = fp.read()
-          transmit(read, sock)
+        with open('./pages/' + page, 'rb') as fp:
+          #read = fp.read()
+          transmit(fp.read(), sock)
         '''
         if  not os.path.isfile('./pages' + page):
           transmit(STATUS_NOT_FOUND, sock)
