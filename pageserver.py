@@ -91,9 +91,8 @@ def respond(sock):
           print('Here')
           transmit(STATUS_OK, sock)
           #f = open('./pages/' + page[1])
-          with open('./pages/' + page[1]) as fp:
-            for line in fp:
-              transmit(line, sock)
+          with open('./pages/' + page[1], 'r') as fp:
+            transmit(fp.read(), sock)
         
         
     else:
