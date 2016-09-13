@@ -91,6 +91,7 @@ def respond(sock):
           #f = open('./pages/' + page[1])
           with open('./pages/' + page, 'r') as fp:
             read = fp.read()
+            print(read)
             transmit(read, sock)
         
         
