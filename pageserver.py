@@ -85,7 +85,7 @@ def respond(sock):
         page = parts[1]
         transmit(STATUS_OK, sock)
         size = os.path.getsize('./pages/' + page)
-        transmit('content-length: ' + size + "\n", sock)
+        transmit('content-length: ' + str(size) + "\n", sock)
         if page.endswith(".html"):
           transmit("Content-type: text/html\n\n", sock)
         else:
