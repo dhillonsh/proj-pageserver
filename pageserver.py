@@ -90,8 +90,8 @@ def respond(sock):
           transmit(STATUS_OK, sock)
           #f = open('./pages/' + page[1])
           with open('./pages/' + page, 'r') as fp:
-            print(fp.read())
-            transmit(fp.read(), sock)
+            read = fp.read()
+            transmit(read, sock)
         
         
     else:
