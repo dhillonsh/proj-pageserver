@@ -88,8 +88,8 @@ def respond(sock):
           transmit(STATUS_NOT_FOUND, sock)
         else:
           transmit(STATUS_OK, sock)
-          if page.endswith(".html"):
-            transmit("Content-Type: text/html\r\n\r\n", sock)
+          #if page.endswith(".html"):
+          #  transmit("Content-Type: text/html\r\n\r\n", sock)
           
           #f = open('./pages/' + page[1])
           with open('./pages/' + page, 'r') as fp:
