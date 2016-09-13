@@ -87,10 +87,10 @@ def respond(sock):
         if  not os.path.isfile('./pages' + page):
           transmit(STATUS_NOT_FOUND, sock)
         else:
-          print('Here')
           transmit(STATUS_OK, sock)
           #f = open('./pages/' + page[1])
           with open('./pages/' + page, 'r') as fp:
+            print(fp.read())
             transmit(fp.read(), sock)
         
         
