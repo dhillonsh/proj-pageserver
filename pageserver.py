@@ -81,19 +81,16 @@ def respond(sock):
     print("\nRequest was {}\n".format(request))
 
     parts = request.split()
-    print(parts)
     if len(parts) > 1 and parts[0] == "GET":
         page = parts[1]
         transmit(STATUS_OK, sock)
         if page.endswith(".html"):
           transmit("Content-type: text/html\n\n", sock)
-          print("HTML")
         else:
           transmit("Content-type: text/css\n\n", sock)
           
         with open('./pages/' + page, 'r') as fp:
           read = fp.read()
-          print(read)
           transmit(read, sock)
         '''
         if  not os.path.isfile('./pages' + page):
