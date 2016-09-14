@@ -85,7 +85,7 @@ def respond(sock):
         page = parts[1]
         if  not os.path.isfile('./pages/' + page):
           transmit(STATUS_NOT_FOUND, sock)
-        else if (len(page) > 1 and (page[1] == '/' or page[1] == '~')) or (len(page) > 2 and page[1:2] == '..'):
+        else if (len(page) > 1 and (page[1] == '/' or page[1] == '~')) or (len(page) > 2 and page[1] == '.' and page[2] == '.'):
           transmit(STATUS_FORBIDDEN, sock)
         else:
           size = os.path.getsize('./pages/' + page)
