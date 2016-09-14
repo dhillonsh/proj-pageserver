@@ -89,7 +89,7 @@ def respond(sock):
           transmit(STATUS_NOT_FOUND, sock)
         else:
           transmit(STATUS_OK, sock)
-          transmit("Content-Type: text/" "html" + if page.endswith(".html") else "css" + "; charset=UTF-8\n\n\n", sock)
+          transmit("Content-Type: text/" + "html" if page.endswith(".html") else "css" + "; charset=UTF-8\n\n\n", sock)
 
           with open('./pages/' + page, 'r') as fp:
             transmit(fp.read(), sock)
