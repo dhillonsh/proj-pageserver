@@ -94,13 +94,17 @@ def respond(sock):
           + "vary: Accept-Encoding\n", sock)
   
           if page.endswith(".html"):
-            transmit("Content-type: text/html; charset=UTF-8\n\n", sock)
+            transmit("content-type: text/html; charset=UTF-8\n\n", sock)
           else:
-            transmit("content-type:text/css; charset=UTF-8\n\n", sock)
+            transmit("content-type:text/css; \n\n", sock)
+          
+          if page.endswith(".css"):
+            transmit("p { color = rgb(240,0,0); }", sock)
+          else:
             
-          with open('./pages/' + page, 'r') as fp:
-            #read = fp.read()
-            transmit(fp.read(), sock)
+            with open('./pages/' + page, 'r') as fp:
+              #read = fp.read()
+              transmit(fp.read(), sock)
         
         
     else:
