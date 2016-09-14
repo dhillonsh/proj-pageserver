@@ -84,34 +84,24 @@ def respond(sock):
     if len(parts) > 1 and parts[0] == "GET":
         page = parts[1]
         
-        size = os.path.getsize('./pages/' + page)
-        transmit(STATUS_OK \
-        + 'content-length: ' + str(size) + "\n" \
-        + "status: 200\n" \
-        + "vary: Accept-Encoding\n", sock)
-
-        if page.endswith(".html"):
-          transmit("Content-type: text/html; charset=UTF-8\n\n", sock)
-        else:
-          transmit("content-type:text/css; charset=UTF-8\n\n", sock)
-          
-        with open('./pages/' + page, 'r') as fp:
-          #read = fp.read()
-          transmit(fp.read(), sock)
-        '''
         if  not os.path.isfile('./pages' + page):
           transmit(STATUS_NOT_FOUND, sock)
         else:
-          transmit(STATUS_OK, sock)
-          #if page.endswith(".html"):
-          #  transmit("Content-Type: text/html\r\n\r\n", sock)
-          
-          #f = open('./pages/' + page[1])
+          size = os.path.getsize('./pages/' + page)
+          transmit(STATUS_OK \
+          + 'content-length: ' + str(size) + "\n" \
+          + "status: 200\n" \
+          + "vary: Accept-Encoding\n", sock)
+  
+          if page.endswith(".html"):
+            transmit("Content-type: text/html; charset=UTF-8\n\n", sock)
+          else:
+            transmit("content-type:text/css; charset=UTF-8\n\n", sock)
+            
           with open('./pages/' + page, 'r') as fp:
-            read = fp.read()
-            print(read)
-            transmit(read, sock)
-        '''
+            #read = fp.read()
+            transmit(fp.read(), sock)
+        
         
     else:
         transmit(STATUS_NOT_IMPLEMENTED, sock)        
