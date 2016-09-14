@@ -96,10 +96,11 @@ def respond(sock):
           if page.endswith(".html"):
             transmit("content-type: text/html; charset=UTF-8\n\n", sock)
           else:
-            transmit("content-type:text/css; \n\n", sock)
+            transmit("content-type:text/css; charset=UTF-8\n\n", sock)
           
           if page.endswith(".css"):
-            transmit("p { color = rgb(240,0,0); }", sock)
+            print("Here")
+            transmit("p { color = rgb(240,0,0); }\n", sock)
           else:
             
             with open('./pages/' + page, 'r') as fp:
