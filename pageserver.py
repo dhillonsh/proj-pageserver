@@ -100,7 +100,9 @@ def respond(sock):
           
           if page.endswith(".css"):
             print("Here")
-            transmit("p { color = rgb(240,0,0); }\n", sock)
+            with open('./pages/' + page, 'r') as fp:
+              #read = fp.read()
+              transmit(fp.read(), sock)
           else:
             
             with open('./pages/' + page, 'r') as fp:
