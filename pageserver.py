@@ -88,16 +88,8 @@ def respond(sock):
         if not os.path.isfile('./pages/' + page):
           transmit(STATUS_NOT_FOUND, sock)
         else:
-          size = os.path.getsize('./pages/' + page)
-          transmit(STATUS_OK \
-          + 'content-length: ' + str(size) + "\n" \
-          + "status: 200\n" \
-          + "vary: Accept-Encoding\n", sock)
-  
-          if page.endswith(".html"):
-            transmit("content-type: text/html; charset=UTF-8\n\n\n", sock)
-          else:
-            transmit("content-type: text/css; charset=UTF-8\n\n\n", sock)
+          transmit(STATUS_OK, sock)
+          transmit("Content-Type: text/" "html" + if page.endswith(".html") else "css" + "; charset=UTF-8\n\n\n", sock)
 
           with open('./pages/' + page, 'r') as fp:
             transmit(fp.read(), sock)
