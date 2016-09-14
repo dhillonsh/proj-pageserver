@@ -83,8 +83,8 @@ def respond(sock):
     parts = request.split()
     if len(parts) > 1 and parts[0] == "GET":
         page = parts[1]
-        
-        if  not os.path.isfile('./pages' + page):
+        print(parts)
+        if  not os.path.isfile('./pages/' + page):
           transmit(STATUS_NOT_FOUND, sock)
         else:
           size = os.path.getsize('./pages/' + page)
