@@ -81,10 +81,10 @@ def respond(sock):
     print("\nRequest was {}\n".format(request))
 
     parts = request.split()
+    page = parts[1]
     if (len(page) > 1 and (page[1] == '/' or page[1] == '~')) or (len(page) > 2 and page[1] == '.' and page[2] == '.'):
       transmit(STATUS_FORBIDDEN, sock)
     elif len(parts) > 1 and parts[0] == "GET":
-        page = parts[1]
         if not os.path.isfile('./pages/' + page):
           transmit(STATUS_NOT_FOUND, sock)
         else:
