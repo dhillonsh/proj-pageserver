@@ -86,6 +86,7 @@ def respond(sock):
         print(parts)
         if  not os.path.isfile('./pages/' + page):
           transmit(STATUS_NOT_FOUND, sock)
+          transmit("Not found\n",sock)
         else:
           size = os.path.getsize('./pages/' + page)
           transmit(STATUS_OK \
@@ -94,22 +95,12 @@ def respond(sock):
           + "vary: Accept-Encoding\n", sock)
   
           if page.endswith(".html"):
-            transmit("content-type: text/html; charset=UTF-8\n\n", sock)
+            transmit("content-type: text/html; charset=UTF-8\n\n\n", sock)
           else:
-            transmit("content-type:text/html; charset=UTF-8\n\n", sock)
-          
-          if page.endswith(".css"):
-            print("Here")
-            with open('./pages/' + page, 'r') as fp:
-              #read = fp.read()
-              transmit(fp.read(), sock)
-          else:
-            
-            with open('./pages/' + page, 'r') as fp:
-              #read = fp.read()
-              transmit(fp.read(), sock)
-        
-        
+            transmit("content-type: text/css; charset=UTF-8\n\n\n", sock)
+
+          with open('./pages/' + page, 'r') as fp:
+            transmit(fp.read(), sock)
     else:
         transmit(STATUS_NOT_IMPLEMENTED, sock)        
         transmit("\nI don't handle this request: {}\n".format(request), sock)
