@@ -82,7 +82,7 @@ def respond(sock):
 
     parts = request.split()
     page = parts[1]
-    if len(page) > 1 and any(x in page for x in ['//','..','~']) or not page.rsplit('.', 1)[1] in ['html','css']:
+    if any(x in page for x in ['//','..','~']) or ('.' in page and not page.rsplit('.', 1)[1] in ['html','css']):
       transmit(STATUS_FORBIDDEN, sock)
     elif len(parts) > 1 and parts[0] == "GET":
         if not os.path.isfile('./pages/' + page):
