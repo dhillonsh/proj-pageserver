@@ -6,10 +6,10 @@
 * The webserver will automatically transmit any .html or .css files that are currenly in the ./pages/ directory.
 * Any subdirectories within the ./pages/ directory will also be considered valid paths when attempting to reach it by url.
 * The application will return one of four status upon each connection:
-  ** 200 - Everything is OK
-  ** 401 - Not implemented
-  ** 403 - Forbidden (if the url contains '//', '..', or '~' or if the page you are trying to reach is not a html or css page)
-  ** 404 - Not found
+ ** 200 - Everything is OK
+ ** 401 - Not implemented
+ ** 403 - Forbidden (if the url contains '//', '..', or '~' or if the page you are trying to reach is not a html or css page)
+ ** 404 - Not found
 
 
 ### Running the Application ###
