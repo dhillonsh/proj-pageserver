@@ -25,6 +25,5 @@
  
 ### Testing the Applicaiton ###
 * There is a default test shell script in the ./tests/ directory named 'tests.sh'.
-* Usage:
- ** ./tests.sh http://127.0.0.1:8000
+* Usage: ./tests.sh http://127.0.0.1:8000
 * Assuming you have already started the webserver in another terminal, the tests script will attempt to get a list of pages and return the output vs. expectation
