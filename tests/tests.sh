@@ -40,6 +40,6 @@ expect_status there/theybe.html 404
 expect_status there//theybe.html "403"
 expect_status there.xxx "403"
 
-expect_status testing/../this.html "403"
-expect_status testing/../trivia.html "403"
+expect_status testing/../this.html "404"
+expect_status testing/~/trivia.html "403"
 expect_status trivia.css "200"
