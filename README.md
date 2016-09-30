@@ -1,7 +1,8 @@
 # README #
 
 ### Author: Harpreet Dhillon , harpreet@uoregon.edu ###
- 
+### Application URL: http://ix.cs.uoregon.edu:8000 ###
+
 ### Application Specifics ###
 * The webserver will automatically transmit any .html or .css files that are currenly in the ./pages/ directory.
 * Any subdirectories within the ./pages/ directory will also be considered valid paths when attempting to reach it by url.
