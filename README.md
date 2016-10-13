@@ -24,7 +24,7 @@
 * The default port is 8000, so the webserver should be reachable at http://127.0.0.1:8000
 * 'Out of the box' the only page available is trivia.html which is reachable at http://127.0.0.1:8000/trivia.html
  
-### Testing the Applicaiton ###
+### Testing the Application ###
 * There is a default test shell script in the ./tests/ directory named 'tests.sh'.
 * Usage: ./tests.sh http://127.0.0.1:8000
 * Assuming you have already started the webserver in another terminal, the tests script will attempt to get a list of pages and return the output vs. expectation
